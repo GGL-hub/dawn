@@ -511,6 +511,27 @@
       "expired": "Expired"
     }
   },
+  "gexon": {
+    "brand": {
+      "name": "GEXON"
+    },
+    "home": {
+      "category_kicker": "Shop by category",
+      "category_heading": "Equipment for every training zone",
+      "brands_kicker": "Featured brands",
+      "brands_heading": "Trusted gear for stronger spaces",
+      "brands_text": "Curated equipment lines for strength floors, cardio zones, functional training areas, and complete home gym builds.",
+      "best_sellers_kicker": "Best sellers",
+      "view_all": "View all",
+      "product_placeholder": "GEXON training essential",
+      "product_placeholder_price": "From $99",
+      "why_kicker": "Why choose GEXON",
+      "why_heading": "Made for athletes who put equipment to work",
+      "contact_kicker": "Contact us",
+      "contact_heading": "Build your gym with GEXON",
+      "contact_text": "Tell us what you are building and our team will help you choose the right equipment mix for your space, budget, and training goals."
+    }
+  },
   "recipient": {
     "form": {
       "checkbox": "I want to send this as a gift",

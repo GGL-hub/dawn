@@ -1,0 +1,750 @@
+<section class="gexon-home color-{{ section.settings.color_scheme }}">
+  <div class="gexon-hero">
+    {%- if section.settings.hero_image != blank -%}
+      {{
+        section.settings.hero_image
+        | image_url: width: 2400
+        | image_tag:
+          class: 'gexon-hero__image',
+          widths: '750, 1100, 1500, 2000, 2400',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high'
+      }}
+    {%- else -%}
+      <div class="gexon-hero__fallback" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    {%- endif -%}
+    <div class="gexon-hero__overlay"></div>
+    <div class="gexon-hero__content page-width">
+      <p class="gexon-eyebrow">{{ section.settings.hero_kicker }}</p>
+      <h1>{{ section.settings.hero_heading }}</h1>
+      <p>{{ section.settings.hero_text }}</p>
+      <div class="gexon-actions">
+        <a class="button button--primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>
+        <a class="button button--secondary" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="gexon-band gexon-band--dark">
+    <div class="page-width">
+      <div class="gexon-section-heading">
+        <p class="gexon-eyebrow">{{ 'gexon.home.category_kicker' | t }}</p>
+        <h2>{{ 'gexon.home.category_heading' | t }}</h2>
+      </div>
+      <div class="gexon-category-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'category' -%}
+            <a class="gexon-category-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+              <span>{{ block.settings.title }}</span>
+              <small>{{ block.settings.text }}</small>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="gexon-band">
+    <div class="page-width">
+      <div class="gexon-section-heading gexon-section-heading--split">
+        <div>
+          <p class="gexon-eyebrow">{{ 'gexon.home.brands_kicker' | t }}</p>
+          <h2>{{ 'gexon.home.brands_heading' | t }}</h2>
+        </div>
+        <p>{{ 'gexon.home.brands_text' | t }}</p>
+      </div>
+      <div class="gexon-brand-row">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'brand' -%}
+            <div class="gexon-brand" {{ block.shopify_attributes }}>{{ block.settings.title }}</div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="gexon-band gexon-band--products">
+    <div class="page-width">
+      <div class="gexon-section-heading gexon-section-heading--split">
+        <div>
+          <p class="gexon-eyebrow">{{ 'gexon.home.best_sellers_kicker' | t }}</p>
+          <h2>{{ section.settings.best_sellers_heading }}</h2>
+        </div>
+        {%- if section.settings.best_sellers_link != blank -%}
+          <a class="gexon-text-link" href="{{ section.settings.best_sellers_link }}">{{ 'gexon.home.view_all' | t }}</a>
+        {%- endif -%}
+      </div>
+      <div class="gexon-product-grid">
+        {%- if section.settings.best_sellers_collection != blank -%}
+          {%- for product in section.settings.best_sellers_collection.products limit: 4 -%}
+            <div class="gexon-product">
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: 'square',
+                image_shape: 'default',
+                show_secondary_image: true,
+                show_vendor: false,
+                show_rating: false,
+                lazy_load: true,
+                section_id: section.id,
+                quick_add: 'standard'
+              %}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for index in (1..4) -%}
+            <div class="gexon-placeholder-product">
+              {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              <strong>{{ 'gexon.home.product_placeholder' | t }}</strong>
+              <span>{{ 'gexon.home.product_placeholder_price' | t }}</span>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="gexon-band gexon-band--dark">
+    <div class="page-width">
+      <div class="gexon-section-heading">
+        <p class="gexon-eyebrow">{{ 'gexon.home.why_kicker' | t }}</p>
+        <h2>{{ 'gexon.home.why_heading' | t }}</h2>
+      </div>
+      <div class="gexon-why-grid">
+        {%- assign reason_number = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'reason' -%}
+            {%- assign reason_number = reason_number | plus: 1 -%}
+            <article class="gexon-reason" {{ block.shopify_attributes }}>
+              <span>{{ reason_number }}</span>
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.text }}</p>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="gexon-band gexon-contact" id="gexon-contact">
+    <div class="page-width gexon-contact__grid">
+      <div>
+        <p class="gexon-eyebrow">{{ 'gexon.home.contact_kicker' | t }}</p>
+        <h2>{{ 'gexon.home.contact_heading' | t }}</h2>
+        <p>{{ 'gexon.home.contact_text' | t }}</p>
+      </div>
+      <div class="gexon-contact__form">
+        {%- form 'contact', id: 'GexonContactForm' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="form-status form-status-list form__message" tabindex="-1" autofocus>
+              {{ 'templates.contact.form.post_success' | t }}
+            </p>
+          {%- elsif form.errors -%}
+            {{ form.errors | default_errors }}
+          {%- endif -%}
+          <div class="field">
+            <input class="field__input" type="text" id="GexonContactName" name="contact[name]" value="{% if form.name %}{{ form.name }}{% endif %}" placeholder="{{ 'templates.contact.form.name' | t }}">
+            <label class="field__label" for="GexonContactName">{{ 'templates.contact.form.name' | t }}</label>
+          </div>
+          <div class="field">
+            <input class="field__input" autocomplete="email" type="email" id="GexonContactEmail" name="contact[email]" spellcheck="false" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% endif %}" aria-required="true" placeholder="{{ 'templates.contact.form.email' | t }}">
+            <label class="field__label" for="GexonContactEmail">{{ 'templates.contact.form.email' | t }}</label>
+          </div>
+          <div class="field">
+            <textarea rows="6" class="text-area field__input" id="GexonContactMessage" name="contact[body]" placeholder="{{ 'templates.contact.form.comment' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            <label class="form__label field__label" for="GexonContactMessage">{{ 'templates.contact.form.comment' | t }}</label>
+          </div>
+          <button type="submit" class="button button--primary">{{ 'templates.contact.form.send' | t }}</button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gexon-home {
+    --gexon-red: #e53935;
+    --gexon-black: #111111;
+    color: rgb(var(--color-foreground));
+    background: rgb(var(--color-background));
+  }
+
+  .gexon-hero {
+    position: relative;
+    min-height: min(760px, 88vh);
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    background: var(--gexon-black);
+  }
+
+  .gexon-hero__image,
+  .gexon-hero__fallback,
+  .gexon-hero__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gexon-hero__image {
+    object-fit: cover;
+  }
+
+  .gexon-hero__fallback {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    transform: skewX(-10deg) scale(1.12);
+  }
+
+  .gexon-hero__fallback span {
+    background: linear-gradient(145deg, #2a2a2a, #080808 55%, #3b1211);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .gexon-hero__overlay {
+    background:
+      linear-gradient(90deg, rgba(17, 17, 17, 0.95), rgba(17, 17, 17, 0.56) 45%, rgba(17, 17, 17, 0.2)),
+      linear-gradient(0deg, rgba(17, 17, 17, 0.95), rgba(17, 17, 17, 0));
+  }
+
+  .gexon-hero__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-top: 10rem;
+    padding-bottom: 8rem;
+    color: #ffffff;
+  }
+
+  .gexon-hero__content h1 {
+    max-width: 820px;
+    margin: 0;
+    font-size: clamp(4rem, 8vw, 9.6rem);
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+
+  .gexon-hero__content p:not(.gexon-eyebrow) {
+    max-width: 620px;
+    margin: 2.2rem 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.8rem;
+  }
+
+  .gexon-eyebrow {
+    margin: 0 0 1.2rem;
+    color: var(--gexon-red);
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .gexon-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 3.2rem;
+  }
+
+  .gexon-actions .button,
+  .gexon-contact .button {
+    min-height: 4.8rem;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  .gexon-actions .button--primary,
+  .gexon-contact .button--primary {
+    --color-button: 229, 57, 53;
+    --color-button-text: 255, 255, 255;
+  }
+
+  .gexon-actions .button--secondary {
+    --color-secondary-button: 17, 17, 17;
+    --color-secondary-button-text: 255, 255, 255;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .gexon-band {
+    padding: 7.2rem 0;
+    background: #ffffff;
+  }
+
+  .gexon-band--dark {
+    background: var(--gexon-black);
+    color: #ffffff;
+  }
+
+  .gexon-band--products {
+    background: #f4f4f4;
+  }
+
+  .gexon-section-heading {
+    margin-bottom: 3.2rem;
+  }
+
+  .gexon-section-heading h2 {
+    margin: 0;
+    font-size: clamp(3rem, 5vw, 5.6rem);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .gexon-section-heading--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .gexon-section-heading--split > p {
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.68);
+  }
+
+  .gexon-category-grid,
+  .gexon-product-grid,
+  .gexon-why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.6rem;
+  }
+
+  .gexon-category-card {
+    min-height: 22rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.4rem;
+    color: #ffffff;
+    text-decoration: none;
+    background:
+      linear-gradient(145deg, rgba(229, 57, 53, 0.92), rgba(229, 57, 53, 0.08) 44%),
+      linear-gradient(160deg, #252525, #060606);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: transform 180ms ease, border-color 180ms ease;
+  }
+
+  .gexon-category-card:hover {
+    transform: translateY(-0.4rem);
+    border-color: var(--gexon-red);
+  }
+
+  .gexon-category-card span {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  .gexon-category-card small {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.4rem;
+  }
+
+  .gexon-brand-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid rgba(17, 17, 17, 0.12);
+    border-left: 1px solid rgba(17, 17, 17, 0.12);
+  }
+
+  .gexon-brand {
+    min-height: 10rem;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    border-right: 1px solid rgba(17, 17, 17, 0.12);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+    color: var(--gexon-black);
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .gexon-text-link {
+    color: var(--gexon-red);
+    font-weight: 900;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .gexon-product {
+    min-width: 0;
+  }
+
+  .gexon-placeholder-product {
+    min-height: 34rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    background: #ffffff;
+    color: var(--gexon-black);
+  }
+
+  .gexon-placeholder-product .placeholder-svg {
+    width: 100%;
+    height: 22rem;
+    background: #eeeeee;
+  }
+
+  .gexon-placeholder-product strong {
+    margin-top: 1.6rem;
+    text-transform: uppercase;
+  }
+
+  .gexon-placeholder-product span {
+    color: var(--gexon-red);
+    font-weight: 800;
+  }
+
+  .gexon-reason {
+    padding: 2.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .gexon-reason span {
+    display: inline-grid;
+    place-items: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    margin-bottom: 3rem;
+    background: var(--gexon-red);
+    color: #ffffff;
+    font-weight: 900;
+  }
+
+  .gexon-reason h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 2.1rem;
+    text-transform: uppercase;
+  }
+
+  .gexon-reason p {
+    margin: 1rem 0 0;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .gexon-contact__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .gexon-contact h2 {
+    margin: 0;
+    font-size: clamp(3rem, 5vw, 5.4rem);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .gexon-contact p {
+    max-width: 48rem;
+  }
+
+  .gexon-contact__form {
+    padding: 3rem;
+    background: #f4f4f4;
+  }
+
+  .gexon-contact__form .field {
+    margin-bottom: 1.6rem;
+  }
+
+  @media screen and (max-width: 989px) {
+    .gexon-category-grid,
+    .gexon-product-grid,
+    .gexon-why-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gexon-brand-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .gexon-section-heading--split,
+    .gexon-contact__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .gexon-hero {
+      min-height: 74rem;
+    }
+
+    .gexon-hero__content {
+      padding-top: 8rem;
+      padding-bottom: 5rem;
+    }
+
+    .gexon-band {
+      padding: 5rem 0;
+    }
+
+    .gexon-category-grid,
+    .gexon-product-grid,
+    .gexon-why-grid,
+    .gexon-brand-row {
+      grid-template-columns: 1fr;
+    }
+
+    .gexon-category-card {
+      min-height: 17rem;
+    }
+
+    .gexon-contact__form {
+      padding: 2rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "GEXON home",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_kicker",
+      "label": "Hero kicker",
+      "default": "GEXON performance equipment"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Built for serious training"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_text",
+      "label": "Hero text",
+      "default": "Commercial-grade strength, cardio, and functional training gear for gyms, studios, and home athletes."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop equipment"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link",
+      "default": "#gexon-contact"
+    },
+    {
+      "type": "collection",
+      "id": "best_sellers_collection",
+      "label": "Best sellers collection"
+    },
+    {
+      "type": "text",
+      "id": "best_sellers_heading",
+      "label": "Best sellers heading",
+      "default": "Best sellers"
+    },
+    {
+      "type": "url",
+      "id": "best_sellers_link",
+      "label": "Best sellers link",
+      "default": "/collections/all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Strength Equipment"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Racks, benches, plates, bars, and storage."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "default": "/collections/all"
+        }
+      ]
+    },
+    {
+      "type": "brand",
+      "name": "Brand",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Brand name",
+          "default": "GEXON"
+        }
+      ]
+    },
+    {
+      "type": "reason",
+      "name": "Reason",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Built tough"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Heavy-duty equipment selected for daily training volume and long-term performance."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GEXON home",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Strength Equipment",
+            "text": "Racks, benches, plates, bars, and storage.",
+            "link": "/collections/strength-equipment"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Cardio Equipment",
+            "text": "Treadmills, bikes, rowers, and conditioning machines.",
+            "link": "/collections/cardio-equipment"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Functional Training",
+            "text": "Cable systems, sleds, rigs, and mobility tools.",
+            "link": "/collections/functional-training"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Accessories",
+            "text": "Bands, handles, mats, collars, and essentials.",
+            "link": "/collections/accessories"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "title": "GEXON"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "title": "Strength Lab"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "title": "Ironline"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "title": "PulseFit"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "title": "CorePro"
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "title": "Commercial durability",
+            "text": "Equipment chosen for demanding gyms, high-traffic studios, and relentless home training."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "title": "Training-first curation",
+            "text": "Every category is organized around real lifting, conditioning, recovery, and performance workflows."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "title": "Fast support",
+            "text": "Clear product guidance, order assistance, and responsive service from first quote to delivery."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "title": "Value without compromise",
+            "text": "Premium essentials, sharp pricing, and reliable equipment for athletes who train hard."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
