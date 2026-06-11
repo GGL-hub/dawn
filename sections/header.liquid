@@ -94,6 +94,18 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .gexon-header-logo {
+    display: block;
+    width: min(18.4rem, 42vw);
+    height: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .gexon-header-logo {
+      width: min(15.6rem, 48vw);
+    }
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -160,7 +172,14 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ 'gexon.brand.name' | t }}</span>
+              <img
+                src="{{ 'gexon-logo.png' | asset_url }}"
+                alt="{{ 'gexon.brand.name' | t }}"
+                class="gexon-header-logo motion-reduce"
+                width="184"
+                height="44"
+                loading="eager"
+              >
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -200,7 +219,14 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ 'gexon.brand.name' | t }}</span>
+              <img
+                src="{{ 'gexon-logo.png' | asset_url }}"
+                alt="{{ 'gexon.brand.name' | t }}"
+                class="gexon-header-logo motion-reduce"
+                width="184"
+                height="44"
+                loading="eager"
+              >
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
