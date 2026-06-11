@@ -117,7 +117,7 @@
         "primary_label": "Shop equipment",
         "primary_link": "/collections/all",
         "secondary_label": "Contact us",
-        "secondary_link": "#gexon-contact",
+        "secondary_link": "/#gexon-contact",
         "best_sellers_heading": "Best sellers",
         "best_sellers_link": "/collections/all"
       }
