@@ -109,8 +109,17 @@ Renders the GEXON desktop catalog menu.
 
   .gexon-catalog-menu__intro {
     padding: 2.4rem;
-    background: linear-gradient(145deg, rgba(229, 57, 53, 0.22), rgba(229, 57, 53, 0.02)), #141414;
+    background:
+      radial-gradient(circle at 18% 15%, rgba(229, 57, 53, 0.35), transparent 34%),
+      linear-gradient(145deg, rgba(229, 57, 53, 0.22), rgba(229, 57, 53, 0.02)),
+      #151515;
     border: 1px solid rgba(229, 57, 53, 0.38);
+    transition: border-color 160ms ease, transform 160ms ease;
+  }
+
+  .gexon-catalog-menu__intro:hover {
+    border-color: rgba(229, 57, 53, 0.72);
+    transform: translateY(-0.2rem);
   }
 
   .gexon-catalog-menu__intro p {
@@ -155,14 +164,16 @@ Renders the GEXON desktop catalog menu.
 
   .gexon-catalog-menu__group a {
     display: block;
-    padding: 0.7rem 0;
+    padding: 0.75rem 0;
     color: rgba(255, 255, 255, 0.82);
     font-size: 1.4rem;
     text-decoration: none;
+    transition: color 140ms ease, padding-left 140ms ease;
   }
 
   .gexon-catalog-menu__group a:hover {
     color: #ffffff;
+    padding-left: 0.6rem;
     text-decoration: underline;
     text-underline-offset: 0.3rem;
   }

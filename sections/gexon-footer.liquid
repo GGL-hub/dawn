@@ -1,0 +1,152 @@
+<footer class="gexon-footer color-{{ section.settings.color_scheme }}">
+  <div class="page-width gexon-footer__inner">
+    <div class="gexon-footer__brand">
+      <strong>GEXON</strong>
+      <p>{{ section.settings.brand_text }}</p>
+    </div>
+
+    <nav class="gexon-footer__column" aria-label="Company">
+      <h2>Company</h2>
+      <a href="/pages/about-us">About Us</a>
+      <a href="/pages/contact">Contact</a>
+      <a href="/pages/our-brands">Our Brands</a>
+    </nav>
+
+    <nav class="gexon-footer__column" aria-label="Customer service">
+      <h2>Customer Service</h2>
+      <a href="/policies/shipping-policy">Shipping Policy</a>
+      <a href="/policies/refund-policy">Return & Refund</a>
+      <a href="/pages/warranty">Warranty</a>
+    </nav>
+
+    <nav class="gexon-footer__column" aria-label="Policies">
+      <h2>Policies</h2>
+      <a href="/policies/privacy-policy">Privacy Policy</a>
+      <a href="/policies/terms-of-service">Terms of Service</a>
+    </nav>
+
+    <div class="gexon-footer__column">
+      <h2>Contact</h2>
+      <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+      <p>{{ section.settings.location }}</p>
+    </div>
+  </div>
+
+  <div class="page-width gexon-footer__bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }} GEXON. All rights reserved.</span>
+    <span>Multi-brand fitness equipment supplier.</span>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .gexon-footer {
+    background: #0b0b0b;
+    color: #ffffff;
+    border-top: 1px solid rgba(229, 57, 53, 0.35);
+  }
+
+  .gexon-footer__inner {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.4fr) repeat(4, minmax(140px, 1fr));
+    gap: 3.2rem;
+    padding-top: 5.6rem;
+    padding-bottom: 4rem;
+  }
+
+  .gexon-footer__brand strong {
+    display: block;
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .gexon-footer__brand strong::first-letter {
+    color: #e53935;
+  }
+
+  .gexon-footer__brand p,
+  .gexon-footer__column p,
+  .gexon-footer__bottom {
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  .gexon-footer__brand p {
+    max-width: 34rem;
+    margin: 1.4rem 0 0;
+  }
+
+  .gexon-footer__column h2 {
+    margin: 0 0 1.4rem;
+    color: #e53935;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .gexon-footer__column a {
+    display: block;
+    padding: 0.45rem 0;
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+  }
+
+  .gexon-footer__column a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+
+  .gexon-footer__column p {
+    margin: 0.6rem 0 0;
+  }
+
+  .gexon-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2.4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 1.2rem;
+  }
+
+  @media screen and (max-width: 989px) {
+    .gexon-footer__inner {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gexon-footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .gexon-footer__inner {
+      grid-template-columns: 1fr;
+      padding-top: 4rem;
+    }
+
+    .gexon-footer__bottom {
+      flex-direction: column;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "GEXON footer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "textarea", "id": "brand_text", "label": "Brand text", "default": "Premium multi-brand fitness equipment for commercial gyms, studios, hotels, and home training spaces." },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@gexonfit.com" },
+    { "type": "text", "id": "location", "label": "Location", "default": "Dubai, UAE" }
+  ],
+  "presets": [
+    { "name": "GEXON footer" }
+  ]
+}
+{% endschema %}

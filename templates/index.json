@@ -4,190 +4,85 @@
       "type": "gexon-home",
       "blocks": {
         "strength": {
-          "type": "category",
+          "type": "category_card",
           "settings": {
-            "group": "Strength",
+            "kicker": "Strength",
             "title": "Strength Equipment",
-            "text": "Racks, benches, plates, bars, and storage.",
-            "link": "/collections/strength-equipment"
-          }
-        },
-        "power_racks": {
-          "type": "category",
-          "settings": {
-            "group": "Strength",
-            "title": "Power Racks",
-            "text": "Half racks, full racks, squat stands, and rig systems.",
-            "link": "/collections/power-racks"
-          }
-        },
-        "benches": {
-          "type": "category",
-          "settings": {
-            "group": "Strength",
-            "title": "Benches",
-            "text": "Flat, adjustable, Olympic, and specialty training benches.",
-            "link": "/collections/benches"
-          }
-        },
-        "bars_plates": {
-          "type": "category",
-          "settings": {
-            "group": "Free weights",
-            "title": "Bars & Plates",
-            "text": "Barbells, bumper plates, iron plates, and collars.",
-            "link": "/collections/bars-plates"
-          }
-        },
-        "dumbbells_kettlebells": {
-          "type": "category",
-          "settings": {
-            "group": "Free weights",
-            "title": "Dumbbells & Kettlebells",
-            "text": "Fixed dumbbells, adjustable sets, kettlebells, and racks.",
-            "link": "/collections/dumbbells-kettlebells"
+            "link": "/collections/strength-equipment",
+            "image_url": "https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?auto=format&fit=crop&w=900&q=80"
           }
         },
         "cardio": {
-          "type": "category",
+          "type": "category_card",
           "settings": {
-            "group": "Cardio",
+            "kicker": "Cardio",
             "title": "Cardio Equipment",
-            "text": "Treadmills, bikes, rowers, and conditioning machines.",
-            "link": "/collections/cardio-equipment"
+            "link": "/collections/cardio-equipment",
+            "image_url": "https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=900&q=80"
           }
         },
-        "treadmills": {
-          "type": "category",
+        "free_weights": {
+          "type": "category_card",
           "settings": {
-            "group": "Cardio",
-            "title": "Treadmills",
-            "text": "Commercial treadmills, curved runners, and walking decks.",
-            "link": "/collections/treadmills"
-          }
-        },
-        "bikes_rowers": {
-          "type": "category",
-          "settings": {
-            "group": "Cardio",
-            "title": "Bikes & Rowers",
-            "text": "Air bikes, spin bikes, rowing machines, and ski trainers.",
-            "link": "/collections/bikes-rowers"
+            "kicker": "Free weights",
+            "title": "Free Weights",
+            "link": "/collections/free-weights",
+            "image_url": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80"
           }
         },
         "functional": {
-          "type": "category",
+          "type": "category_card",
           "settings": {
-            "group": "Functional",
+            "kicker": "Functional",
             "title": "Functional Training",
-            "text": "Cable systems, sleds, rigs, and mobility tools.",
-            "link": "/collections/functional-training"
-          }
-        },
-        "cable_machines": {
-          "type": "category",
-          "settings": {
-            "group": "Functional",
-            "title": "Cable Machines",
-            "text": "Functional trainers, cable columns, lat pulldowns, and attachments.",
-            "link": "/collections/cable-machines"
+            "link": "/collections/functional-training",
+            "image_url": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=80"
           }
         },
         "accessories": {
-          "type": "category",
+          "type": "category_card",
           "settings": {
-            "group": "Accessories",
-            "title": "Accessories",
-            "text": "Bands, handles, mats, collars, and essentials.",
-            "link": "/collections/accessories"
-          }
-        },
-        "storage_flooring": {
-          "type": "category",
-          "settings": {
-            "group": "Accessories",
-            "title": "Storage & Flooring",
-            "text": "Gym flooring, mats, dumbbell racks, plate trees, and wall storage.",
-            "link": "/collections/storage-flooring"
-          }
-        },
-        "brand_gexon": {
-          "type": "brand",
-          "settings": {
-            "title": "GEXON"
-          }
-        },
-        "brand_strength_lab": {
-          "type": "brand",
-          "settings": {
-            "title": "Strength Lab"
-          }
-        },
-        "brand_ironline": {
-          "type": "brand",
-          "settings": {
-            "title": "Ironline"
-          }
-        },
-        "brand_pulsefit": {
-          "type": "brand",
-          "settings": {
-            "title": "PulseFit"
-          }
-        },
-        "brand_corepro": {
-          "type": "brand",
-          "settings": {
-            "title": "CorePro"
+            "kicker": "Accessories",
+            "title": "Gym Accessories",
+            "link": "/collections/accessories",
+            "image_url": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=900&q=80"
           }
         },
         "reason_durability": {
-          "type": "reason",
+          "type": "feature_card",
           "settings": {
-            "title": "Commercial durability",
-            "text": "Equipment chosen for demanding gyms, high-traffic studios, and relentless home training."
+            "title": "Wide Selection",
+            "text": "Source strength, cardio, free weights, functional tools, and accessories from one equipment partner."
           }
         },
         "reason_curation": {
-          "type": "reason",
+          "type": "feature_card",
           "settings": {
-            "title": "Training-first curation",
-            "text": "Every category is organized around real lifting, conditioning, recovery, and performance workflows."
+            "title": "Quality Equipment",
+            "text": "Commercial-focused products selected for reliable performance in demanding training environments."
           }
         },
         "reason_support": {
-          "type": "reason",
+          "type": "feature_card",
           "settings": {
-            "title": "Fast support",
-            "text": "Clear product guidance, order assistance, and responsive service from first quote to delivery."
+            "title": "Professional Service",
+            "text": "Get practical guidance for gym layouts, equipment sourcing, and multi-brand product selection."
           }
         },
         "reason_value": {
-          "type": "reason",
+          "type": "feature_card",
           "settings": {
-            "title": "Value without compromise",
-            "text": "Premium essentials, sharp pricing, and reliable equipment for athletes who train hard."
+            "title": "Fast Delivery",
+            "text": "Support for efficient sourcing and delivery across commercial and home gym projects."
           }
         }
       },
       "block_order": [
         "strength",
-        "power_racks",
-        "benches",
-        "bars_plates",
-        "dumbbells_kettlebells",
         "cardio",
-        "treadmills",
-        "bikes_rowers",
+        "free_weights",
         "functional",
-        "cable_machines",
         "accessories",
-        "storage_flooring",
-        "brand_gexon",
-        "brand_strength_lab",
-        "brand_ironline",
-        "brand_pulsefit",
-        "brand_corepro",
         "reason_durability",
         "reason_curation",
         "reason_support",
@@ -195,16 +90,18 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "show_category_section": false,
-        "hero_kicker": "GEXON performance equipment",
-        "hero_heading": "Built for serious training",
+        "hero_image_url": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2400&q=85",
+        "hero_kicker": "GEXON PERFORMANCE EQUIPMENT",
+        "hero_heading": "ONE-STOP FITNESS EQUIPMENT SOLUTION",
         "hero_text": "Commercial-grade strength, cardio, and functional training gear for gyms, studios, and home athletes.",
-        "primary_label": "Shop equipment",
+        "primary_label": "SHOP EQUIPMENT",
         "primary_link": "/collections/all",
-        "secondary_label": "Contact us",
-        "secondary_link": "/#gexon-contact",
-        "best_sellers_heading": "Best sellers",
-        "best_sellers_link": "/collections/all"
+        "secondary_label": "REQUEST A QUOTE",
+        "secondary_link": "/pages/contact",
+        "featured_heading": "Featured Products",
+        "featured_link": "/collections/all",
+        "commercial_link": "/pages/contact",
+        "quote_link": "/pages/contact"
       }
     }
   },
