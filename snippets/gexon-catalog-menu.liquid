@@ -143,3 +143,32 @@ Renders the GEXON desktop catalog menu.
     }
   }
 {% endstylesheet %}
+
+{% javascript %}
+  document.querySelectorAll('.gexon-catalog-menu').forEach((menu) => {
+    const summary = menu.querySelector('summary');
+    const desktopQuery = window.matchMedia('(min-width: 990px)');
+    let closeTimer;
+
+    const openMenu = () => {
+      if (!desktopQuery.matches) return;
+      window.clearTimeout(closeTimer);
+      menu.setAttribute('open', '');
+      summary?.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeMenu = () => {
+      if (!desktopQuery.matches) return;
+      closeTimer = window.setTimeout(() => {
+        if (menu.matches(':hover') || menu.contains(document.activeElement)) return;
+        menu.removeAttribute('open');
+        summary?.setAttribute('aria-expanded', 'false');
+      }, 120);
+    };
+
+    menu.addEventListener('pointerenter', openMenu);
+    menu.addEventListener('pointerleave', closeMenu);
+    menu.addEventListener('focusin', openMenu);
+    menu.addEventListener('focusout', closeMenu);
+  });
+{% endjavascript %}
