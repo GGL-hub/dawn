@@ -23,7 +23,50 @@
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.menu.links -%}
                 <li>
-                  {%- if link.links != blank -%}
+                  {%- if link.handle == 'catalog' -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                        {{ link.title | escape }}
+                        <span class="svg-wrapper">
+                          {{- 'icon-arrow.svg' | inline_asset_content -}}
+                        </span>
+                        <span class="svg-wrapper">
+                          {{- 'icon-caret.svg' | inline_asset_content -}}
+                        </span>
+                      </summary>
+                      <div
+                        id="link-{{ link.handle | escape }}"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            <span class="svg-wrapper">
+                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                            </span>
+                            {{ link.title | escape }}
+                          </button>
+                          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                            <li><a href="{{ routes.collections_url }}/strength-equipment" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Strength Equipment</a></li>
+                            <li><a href="{{ routes.collections_url }}/power-racks" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Power Racks</a></li>
+                            <li><a href="{{ routes.collections_url }}/benches" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Benches</a></li>
+                            <li><a href="{{ routes.collections_url }}/bars-plates" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Bars & Plates</a></li>
+                            <li><a href="{{ routes.collections_url }}/dumbbells-kettlebells" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Dumbbells & Kettlebells</a></li>
+                            <li><a href="{{ routes.collections_url }}/cardio-equipment" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Cardio Equipment</a></li>
+                            <li><a href="{{ routes.collections_url }}/treadmills" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Treadmills</a></li>
+                            <li><a href="{{ routes.collections_url }}/bikes-rowers" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Bikes & Rowers</a></li>
+                            <li><a href="{{ routes.collections_url }}/functional-training" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Functional Training</a></li>
+                            <li><a href="{{ routes.collections_url }}/cable-machines" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Cable Machines</a></li>
+                            <li><a href="{{ routes.collections_url }}/accessories" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Accessories</a></li>
+                            <li><a href="{{ routes.collections_url }}/storage-flooring" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Storage & Flooring</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </details>
+                  {%- elsif link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"

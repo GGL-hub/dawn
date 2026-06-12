@@ -195,6 +195,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
+        "show_category_section": false,
         "hero_kicker": "GEXON performance equipment",
         "hero_heading": "Built for serious training",
         "hero_text": "Commercial-grade strength, cardio, and functional training gear for gyms, studios, and home athletes.",

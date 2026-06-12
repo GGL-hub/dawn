@@ -1,0 +1,145 @@
+{% doc %}
+Renders the GEXON desktop catalog menu.
+@param {object} link - Header menu link.
+@param {number} menu_index - Header menu item index.
+@param {string} color_scheme - Menu color scheme.
+@example
+{% render 'gexon-catalog-menu', link: link, menu_index: forloop.index, color_scheme: section.settings.menu_color_scheme %}
+{% enddoc %}
+
+<header-menu>
+  <details id="Details-HeaderMenu-{{ menu_index }}" class="mega-menu gexon-catalog-menu">
+    <summary
+      id="HeaderMenu-{{ link.handle }}"
+      class="header__menu-item list-menu__item link focus-inset"
+    >
+      <span
+        {%- if link.current %}
+          class="header__active-menu-item"
+        {% endif %}
+      >
+        {{- link.title | escape -}}
+      </span>
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </summary>
+    <div
+      id="GexonCatalogMenu-Content-{{ menu_index }}"
+      class="mega-menu__content gexon-catalog-menu__content color-{{ color_scheme }} gradient motion-reduce global-settings-popup"
+      tabindex="-1"
+    >
+      <div class="page-width gexon-catalog-menu__inner">
+        <div class="gexon-catalog-menu__intro">
+          <p>{{ 'gexon.home.category_kicker' | t }}</p>
+          <strong>{{ 'gexon.home.category_heading' | t }}</strong>
+          <a href="{{ link.url }}" class="gexon-catalog-menu__view-all">{{ 'gexon.home.view_all' | t }}</a>
+        </div>
+        <div class="gexon-catalog-menu__columns">
+          <div class="gexon-catalog-menu__group">
+            <h3>Strength</h3>
+            <a href="{{ routes.collections_url }}/strength-equipment">Strength Equipment</a>
+            <a href="{{ routes.collections_url }}/power-racks">Power Racks</a>
+            <a href="{{ routes.collections_url }}/benches">Benches</a>
+            <a href="{{ routes.collections_url }}/bars-plates">Bars & Plates</a>
+            <a href="{{ routes.collections_url }}/dumbbells-kettlebells">Dumbbells & Kettlebells</a>
+          </div>
+          <div class="gexon-catalog-menu__group">
+            <h3>Cardio</h3>
+            <a href="{{ routes.collections_url }}/cardio-equipment">Cardio Equipment</a>
+            <a href="{{ routes.collections_url }}/treadmills">Treadmills</a>
+            <a href="{{ routes.collections_url }}/bikes-rowers">Bikes & Rowers</a>
+          </div>
+          <div class="gexon-catalog-menu__group">
+            <h3>Functional</h3>
+            <a href="{{ routes.collections_url }}/functional-training">Functional Training</a>
+            <a href="{{ routes.collections_url }}/cable-machines">Cable Machines</a>
+          </div>
+          <div class="gexon-catalog-menu__group">
+            <h3>Accessories</h3>
+            <a href="{{ routes.collections_url }}/accessories">Accessories</a>
+            <a href="{{ routes.collections_url }}/storage-flooring">Storage & Flooring</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+</header-menu>
+
+{% stylesheet %}
+  .gexon-catalog-menu__content {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .gexon-catalog-menu__inner {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 2fr);
+    gap: 4rem;
+    padding-top: 3.2rem;
+    padding-bottom: 3.6rem;
+  }
+
+  .gexon-catalog-menu__intro {
+    padding: 2.4rem;
+    background: linear-gradient(145deg, rgba(229, 57, 53, 0.22), rgba(229, 57, 53, 0.02)), #141414;
+    border: 1px solid rgba(229, 57, 53, 0.38);
+  }
+
+  .gexon-catalog-menu__intro p {
+    margin: 0 0 1.2rem;
+    color: #e53935;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .gexon-catalog-menu__intro strong {
+    display: block;
+    color: #ffffff;
+    font-size: 2.2rem;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .gexon-catalog-menu__view-all {
+    display: inline-flex;
+    margin-top: 2rem;
+    color: #ffffff;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .gexon-catalog-menu__columns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.4rem;
+  }
+
+  .gexon-catalog-menu__group h3 {
+    margin: 0 0 1.2rem;
+    color: #e53935;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .gexon-catalog-menu__group a {
+    display: block;
+    padding: 0.7rem 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.4rem;
+    text-decoration: none;
+  }
+
+  .gexon-catalog-menu__group a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+
+  @media screen and (max-width: 989px) {
+    .gexon-catalog-menu__content {
+      display: none;
+    }
+  }
+{% endstylesheet %}

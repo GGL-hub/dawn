@@ -30,7 +30,8 @@
     </div>
   </div>
 
-  <div class="gexon-band gexon-band--dark">
+  {%- if section.settings.show_category_section -%}
+    <div class="gexon-band gexon-band--dark">
     <div class="page-width">
       <div class="gexon-section-heading">
         <p class="gexon-eyebrow">{{ 'gexon.home.category_kicker' | t }}</p>
@@ -49,6 +50,7 @@
       </div>
     </div>
   </div>
+  {%- endif -%}
 
   <div class="gexon-band">
     <div class="page-width">
@@ -544,6 +546,12 @@
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category_section",
+      "label": "Show category section on home page",
+      "default": false
     },
     {
       "type": "text",
