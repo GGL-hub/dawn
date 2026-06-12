@@ -65,8 +65,38 @@ Renders the GEXON desktop catalog menu.
 </header-menu>
 
 {% stylesheet %}
+  .header-wrapper:has(.gexon-catalog-menu) {
+    position: relative;
+    z-index: 5;
+  }
+
+  .gexon-catalog-menu {
+    position: static;
+  }
+
   .gexon-catalog-menu__content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 6;
+    max-height: min(70vh, 54rem);
+    padding: 0;
+    overflow-y: auto;
+    background: #111111;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(229, 57, 53, 0.28);
+    box-shadow: 0 2.4rem 5rem rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.8rem);
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+
+  .gexon-catalog-menu[open] .gexon-catalog-menu__content {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .gexon-catalog-menu__inner {
