@@ -10,7 +10,7 @@
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.handle == 'catalog' -%}
-          {% render 'gexon-catalog-menu', link: link, menu_index: forloop.index %}
+          {% render 'gexon-catalog-menu-v2', link: link, menu_index: forloop.index %}
         {%- elsif link.links != blank -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
