@@ -29,6 +29,14 @@
         <a class="button button--secondary" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>
       </div>
     </div>
+    <div class="gexon-hero__brand" aria-hidden="true">
+      <img src="{{ 'gexon-logo.png' | asset_url }}" alt="" width="520" height="160">
+    </div>
+    <div class="gexon-hero__dots" aria-hidden="true">
+      <span class="is-active"></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 
   <div class="gexon-section gexon-section--dark">
@@ -170,11 +178,13 @@
 
   .gexon-hero {
     position: relative;
-    min-height: min(820px, 88vh);
+    min-height: clamp(32rem, 31vw, 43rem);
     display: grid;
-    align-items: end;
+    align-items: center;
     overflow: hidden;
     background: var(--gexon-black);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   }
 
   .gexon-hero__image,
@@ -194,22 +204,23 @@
   .gexon-hero__photo {
     background-image: var(--gexon-hero-image);
     background-size: cover;
-    background-position: center;
+    background-position: center right;
     transform: scale(1.02);
   }
 
   .gexon-hero__overlay {
     background:
-      linear-gradient(90deg, rgba(11, 11, 11, 0.96), rgba(11, 11, 11, 0.74) 42%, rgba(11, 11, 11, 0.28)),
-      linear-gradient(0deg, rgba(11, 11, 11, 0.96), rgba(11, 11, 11, 0.22)),
-      radial-gradient(circle at 70% 35%, rgba(229, 57, 53, 0.22), transparent 34%);
+      linear-gradient(90deg, rgba(4, 4, 4, 0.96), rgba(7, 7, 7, 0.74) 38%, rgba(7, 7, 7, 0.22) 72%),
+      linear-gradient(0deg, rgba(4, 4, 4, 0.72), rgba(4, 4, 4, 0.08) 48%, rgba(4, 4, 4, 0.48)),
+      radial-gradient(circle at 72% 40%, rgba(229, 57, 53, 0.16), transparent 30%);
   }
 
   .gexon-hero__content {
     position: relative;
-    z-index: 1;
-    padding-top: 12rem;
-    padding-bottom: 9rem;
+    z-index: 2;
+    max-width: 58rem;
+    padding-top: 4.4rem;
+    padding-bottom: 5.4rem;
   }
 
   .gexon-eyebrow {
@@ -222,32 +233,37 @@
   }
 
   .gexon-hero h1 {
-    max-width: 960px;
+    max-width: 56rem;
     margin: 0;
     color: var(--gexon-white);
-    font-size: clamp(4.4rem, 7vw, 9.4rem);
-    line-height: 0.92;
+    font-size: clamp(3.4rem, 4.2vw, 6.2rem);
+    line-height: 0.95;
     text-transform: uppercase;
   }
 
   .gexon-hero p:not(.gexon-eyebrow) {
-    max-width: 700px;
-    margin: 2.4rem 0 0;
+    max-width: 53rem;
+    margin: 1.4rem 0 0;
     color: rgba(255, 255, 255, 0.86);
-    font-size: 1.9rem;
+    font-size: 1.45rem;
+    line-height: 1.5;
   }
 
   .gexon-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.2rem;
-    margin-top: 3.4rem;
+    gap: 1rem;
+    margin-top: 2.2rem;
   }
 
   .gexon-home .button {
-    min-height: 4.8rem;
+    min-height: 4.2rem;
+    min-width: 14.4rem;
+    padding: 0 1.8rem;
     border-radius: 0;
+    font-size: 1.1rem;
     font-weight: 900;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
   }
 
@@ -260,6 +276,44 @@
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.42);
     background: rgba(255, 255, 255, 0.04);
+  }
+
+  .gexon-hero__brand {
+    position: absolute;
+    z-index: 2;
+    top: 29%;
+    right: clamp(3rem, 10vw, 14rem);
+    width: clamp(18rem, 24vw, 36rem);
+    opacity: 0.94;
+    filter: drop-shadow(0 1.2rem 2rem rgba(0, 0, 0, 0.55));
+  }
+
+  .gexon-hero__brand img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .gexon-hero__dots {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    bottom: 2.1rem;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+
+  .gexon-hero__dots span {
+    width: 2rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.42);
+  }
+
+  .gexon-hero__dots .is-active {
+    background: var(--gexon-red);
   }
 
   .gexon-section {
@@ -539,6 +593,12 @@
   }
 
   @media screen and (max-width: 989px) {
+    .gexon-hero__brand {
+      right: 3rem;
+      width: 20rem;
+      opacity: 0.62;
+    }
+
     .gexon-category-showcase,
     .gexon-product-grid,
     .gexon-feature-grid {
@@ -553,12 +613,24 @@
 
   @media screen and (max-width: 749px) {
     .gexon-hero {
-      min-height: 72rem;
+      min-height: 48rem;
     }
 
     .gexon-hero__content {
-      padding-top: 8rem;
-      padding-bottom: 5rem;
+      padding-top: 5.6rem;
+      padding-bottom: 7rem;
+    }
+
+    .gexon-hero h1 {
+      font-size: clamp(3.2rem, 11vw, 4.8rem);
+    }
+
+    .gexon-hero__brand {
+      top: auto;
+      right: 2rem;
+      bottom: 6.2rem;
+      width: 15rem;
+      opacity: 0.32;
     }
 
     .gexon-section {
